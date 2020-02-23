@@ -4,6 +4,7 @@ import keyGenerator from "uuid/v1";
 import Phonebook from "./Phonebook/Phonebook.jsx";
 import Contacts from "./Contacts/Contacts.jsx";
 import Filter from "./Filter/Filter.jsx";
+import style from "./App.module.css";
 
 class App extends Component {
   state = {
@@ -85,7 +86,7 @@ class App extends Component {
     const filteredValue = this.searchFunc(contacts, filter);
     return (
       <>
-        <h1 style={{ textAlign: "center" }}>Phonebook</h1>
+        <h1 className={style.title}>Phonebook</h1>
         <Phonebook
           handleSubmit={this.handleSubmit}
           resetForm={this.resetForm}

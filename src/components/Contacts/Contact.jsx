@@ -9,7 +9,7 @@ const Contact = ({ el, deleteFunc }) => (
     <input
       type="button"
       onClick={deleteFunc}
-      value="Delete"
+      value="&#10006;"
       className={style.delete_button}
     />
   </li>

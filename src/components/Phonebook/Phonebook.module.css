@@ -1,12 +1,14 @@
 .form {
   margin: 20px auto;
-  border: 1px solid #000000;
+  /* border: 1px solid #000000; */
   width: 340px;
   height: 250px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   padding: 20px;
+  border-radius: 10px;
+  box-shadow: -5px 6px 23px -4px rgba(0, 0, 0, 0.75);
 }
 .form > label {
   display: flex;
@@ -19,8 +21,19 @@
 .form > label > input {
   margin: 5px 0px;
   height: 30px;
+  border-radius: 4px;
 }
 .submit_btn {
-  width: 100px;
+  width: 300px;
+  transition: 0.4s;
   height: 30px;
+  border: none;
+  background-color: #0f4c75;
+  border-radius: 4px;
+  color: #ffffff;
+}
+.submit_btn:hover {
+  transition: 0.4s;
+  cursor: pointer;
+  background-color: #2599e7;
 }

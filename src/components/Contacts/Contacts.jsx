@@ -7,7 +7,7 @@ import Contact from "./Contact.jsx";
 const Contacts = ({ contacts, deleteFunc }) => (
   <div className={style.wrapper}>
     <h2>Contacts</h2>
-    <ul>
+    <ul className={style.list}>
       {contacts.map(el => {
         return (
           <Contact deleteFunc={() => deleteFunc(el.id)} key={el.id} el={el} />

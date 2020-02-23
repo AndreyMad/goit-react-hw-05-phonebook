@@ -1,19 +1,26 @@
 .wrapper {
-  margin: 20px auto;
+  margin: 0px auto 20px;
   width: 340px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* padding: 20px; */
+  border-radius: 10px;
   font-size: 16px;
+  /* box-shadow: -5px 6px 23px -4px rgba(0, 0, 0, 0.75); */
 }
 .wrapper > label > input {
   margin: 5px 0px;
-  height: 30px;
+  height: 35px;
   width: 300px;
+  padding: 0px 10px;
+  font-size: 18px;
+  border-radius: 15px;
+  outline: none;
 }
 .wrapper > label {
   font-size: 20px;
   font-weight: bold;
   width: 300px;
+  color: #142850;
+  text-align: center;
 }

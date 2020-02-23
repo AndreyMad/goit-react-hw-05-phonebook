@@ -1,0 +1,29 @@
+.wrapper {
+  margin: 20px auto;
+  width: 340px;
+  display: flex;
+  flex-direction: column;
+  padding: 0px 20px 20px;
+}
+.wrapper > h2 {
+  margin-bottom: 10px;
+}
+.list_item > p {
+  display: inline;
+  font-size: 16px;
+  line-height: 25px;
+}
+.list_item > p:first-of-type {
+  margin-right: 15px;
+}
+/* .list_item {
+  display: flex;
+  justify-content: space-around;
+  align-content: baseline;
+} */
+.delete_button {
+  width: 50px;
+  height: 18px;
+  margin-left: 25px;
+  font-size: 13px;
+}

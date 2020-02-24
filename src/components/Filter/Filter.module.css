@@ -6,6 +6,7 @@
   align-items: center;
   border-radius: 10px;
   font-size: 16px;
+  overflow: hidden;
   /* box-shadow: -5px 6px 23px -4px rgba(0, 0, 0, 0.75); */
 }
 .wrapper > label > input {

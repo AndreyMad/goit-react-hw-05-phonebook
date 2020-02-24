@@ -1,6 +1,7 @@
 /* eslint-disable import/extensions */
 import React, { Component } from "react";
 import keyGenerator from "uuid/v1";
+import { CSSTransition } from "react-transition-group";
 import Phonebook from "./Phonebook/Phonebook.jsx";
 import Contacts from "./Contacts/Contacts.jsx";
 import Filter from "./Filter/Filter.jsx";
@@ -76,7 +77,7 @@ class App extends Component {
         name: value.name,
         number: value.number
       };
-      const newContactsArray = [...contacts, contactFromInput];
+      const newContactsArray = [contactFromInput, ...contacts];
       this.setState({ contacts: newContactsArray });
     } else alert(`${value.name} contact is allready exist`); // eslint-disable-line no-alert
   };
@@ -86,12 +87,21 @@ class App extends Component {
     const filteredValue = this.searchFunc(contacts, filter);
     return (
       <>
-        <h1 className={style.title}>Phonebook</h1>
+        <CSSTransition in timeout={500} appear classNames={style}>
+          <h1 className={style.title}>Phonebook</h1>
+        </CSSTransition>
+
         <Phonebook
           handleSubmit={this.handleSubmit}
           resetForm={this.resetForm}
         />
-        <Filter handleFilter={this.handleFilter} />
+
+        {contacts.length > 1 ? (
+          <CSSTransition in timeout={500} appear exit classNames={style}>
+            <Filter handleFilter={this.handleFilter} />
+          </CSSTransition>
+        ) : null}
+
         <Contacts
           deleteFunc={this.deleteFunc}
           contacts={filteredValue || contacts}

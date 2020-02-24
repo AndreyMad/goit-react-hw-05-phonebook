@@ -1,19 +1,24 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 import style from "./Contacts.module.css";
+import slide from "../../transitions/slide.module.css";
 // eslint-disable-next-line import/extensions
 import Contact from "./Contact.jsx";
 
 const Contacts = ({ contacts, deleteFunc }) => (
   <div className={style.wrapper}>
-    <h2>Contacts</h2>
-    <ul className={style.list}>
+    <h2 className={style.title}>Contacts</h2>
+
+    <TransitionGroup component="ul" className={style.list}>
       {contacts.map(el => {
         return (
-          <Contact deleteFunc={() => deleteFunc(el.id)} key={el.id} el={el} />
+          <CSSTransition key={el.id} timeout={250} classNames={slide}>
+            <Contact deleteFunc={() => deleteFunc(el.id)} key={el.id} el={el} />
+          </CSSTransition>
         );
       })}
-    </ul>
+    </TransitionGroup>
   </div>
 );
 

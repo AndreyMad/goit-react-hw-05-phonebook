@@ -45,11 +45,13 @@ class Phonebook extends Component {
             value={name}
             type="input"
             name="name"
+            autoComplete="off"
           />
         </label>
         <label htmlFor="number">
           Number
           <input
+            autoComplete="off"
             value={number}
             type="number"
             name="number"

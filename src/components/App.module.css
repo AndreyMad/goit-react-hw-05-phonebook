@@ -1,4 +1,18 @@
 .title {
-  color: #142850;
+  color: rgb(51, 85, 139);
   text-align: center;
+}
+
+.appear {
+  transform: translateX(-100%);
+  transition: transform 500ms linear;
+}
+
+.enterDone {
+  transform: translateY(0);
+  transition: transform 500ms linear;
+}
+.exit {
+  transform: translateX(-100%);
+  transition: transform 500ms linear;
 }

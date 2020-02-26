@@ -9,10 +9,15 @@
 }
 
 .enterDone {
-  transform: translateY(0);
+  transform: translateX(0);
+  transform: rotate(360deg);
   transition: transform 500ms linear;
 }
 .exit {
+  transform: translateX(0);
+  transition: transform 500ms linear;
+}
+.exitdone {
   transform: translateX(-100%);
   transition: transform 500ms linear;
 }

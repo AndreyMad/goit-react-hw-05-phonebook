@@ -6,6 +6,7 @@ import Phonebook from "./Phonebook/Phonebook.jsx";
 import Contacts from "./Contacts/Contacts.jsx";
 import Filter from "./Filter/Filter.jsx";
 import style from "./App.module.css";
+import pop from "../transitions/pop.module.css";
 
 class App extends Component {
   state = {
@@ -15,6 +16,7 @@ class App extends Component {
       { id: "id-3", name: "Eden Clements", number: "645-17-79" },
       { id: "id-4", name: "Annie Copeland", number: "227-91-26" }
     ],
+    alert: false,
     filter: ""
   };
 
@@ -79,15 +81,16 @@ class App extends Component {
       };
       const newContactsArray = [contactFromInput, ...contacts];
       this.setState({ contacts: newContactsArray });
-    } else alert(`${value.name} contact is allready exist`); // eslint-disable-line no-alert
+      // eslint-disable-next-line no-alert
+    } else alert("Error message", "Click me!", 5000);
   };
 
   render() {
-    const { contacts, filter } = this.state;
+    const { contacts, filter, alert } = this.state;
     const filteredValue = this.searchFunc(contacts, filter);
     return (
       <>
-        <CSSTransition in timeout={500} appear classNames={style}>
+        <CSSTransition timeout={500} appear classNames={style}>
           <h1 className={style.title}>Phonebook</h1>
         </CSSTransition>
 
@@ -96,11 +99,14 @@ class App extends Component {
           resetForm={this.resetForm}
         />
 
-        {contacts.length > 1 ? (
-          <CSSTransition in timeout={500} appear exit classNames={style}>
-            <Filter handleFilter={this.handleFilter} />
-          </CSSTransition>
-        ) : null}
+        <CSSTransition
+          in={contacts.length > 1}
+          unmountOnExit
+          timeout={250}
+          classNames={pop}
+        >
+          <Filter handleFilter={this.handleFilter} />
+        </CSSTransition>
 
         <Contacts
           deleteFunc={this.deleteFunc}

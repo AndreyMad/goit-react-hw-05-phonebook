@@ -9,7 +9,8 @@ class Phonebook extends Component {
   };
 
   static propTypes = {
-    handleSubmit: PropTypes.func.isRequired
+    handleSubmit: PropTypes.func.isRequired,
+    handleAlert: PropTypes.func.isRequired
   };
 
   handleChangeState = e => {
@@ -26,11 +27,12 @@ class Phonebook extends Component {
   createContact = e => {
     e.preventDefault();
     const { name, number } = this.state;
+    const { handleAlert } = this.props;
     if (name.length && number.length) {
       const { handleSubmit } = this.props;
       handleSubmit(this.state);
       this.resetForm();
-    } else alert("Enter name & number"); // eslint-disable-line no-alert
+    } else handleAlert("Enter name & number");
   };
 
   render() {

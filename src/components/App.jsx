@@ -7,6 +7,8 @@ import Contacts from "./Contacts/Contacts.jsx";
 import Filter from "./Filter/Filter.jsx";
 import style from "./App.module.css";
 import pop from "../transitions/pop.module.css";
+import fade from "../transitions/fade.module.css";
+import WarningModal from "./WarningModal/WarningModal";
 
 class App extends Component {
   state = {
@@ -17,6 +19,7 @@ class App extends Component {
       { id: "id-4", name: "Annie Copeland", number: "227-91-26" }
     ],
     alert: false,
+    notification: "",
     filter: ""
   };
 
@@ -42,12 +45,20 @@ class App extends Component {
     }
   };
 
-  
-
   handleFilter = e => {
     this.setState({ filter: e.target.value });
     const { contacts, filter } = this.state;
     this.searchFunc(contacts, filter);
+  };
+
+  closeModal = e => {
+    if (
+      e.code === "Escape" ||
+      e.target.className.includes("Overlay") ||
+      e.target.className.includes("close_button")
+    ) {
+      this.setState({ alert: false });
+    }
   };
 
   searchFunc = (arrayToFilter, value) => {
@@ -79,12 +90,18 @@ class App extends Component {
       };
       const newContactsArray = [contactFromInput, ...contacts];
       this.setState({ contacts: newContactsArray });
-      // eslint-disable-next-line no-alert
-    } else alert("Error message", "Click me!", 5000);
+    } else this.handleAlert("Such user allready exist");
+  };
+
+  handleAlert = notif => {
+    this.setState({
+      alert: true,
+      notification: notif
+    });
   };
 
   render() {
-    const { contacts, filter, alert } = this.state;
+    const { contacts, filter, alert, notification } = this.state;
     const filteredValue = this.searchFunc(contacts, filter);
     return (
       <>
@@ -93,6 +110,7 @@ class App extends Component {
         </CSSTransition>
 
         <Phonebook
+          handleAlert={this.handleAlert}
           handleSubmit={this.handleSubmit}
           resetForm={this.resetForm}
         />
@@ -110,6 +128,12 @@ class App extends Component {
           deleteFunc={this.deleteFunc}
           contacts={filteredValue || contacts}
         />
+        <CSSTransition in={alert} unmountOnExit timeout={500} classNames={fade}>
+          <WarningModal
+            closeModal={this.closeModal}
+            notification={notification}
+          />
+        </CSSTransition>
       </>
     );
   }

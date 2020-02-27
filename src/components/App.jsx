@@ -42,9 +42,7 @@ class App extends Component {
     }
   };
 
-  componentDidUpdate = () => {
-    localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
-  };
+  
 
   handleFilter = e => {
     this.setState({ filter: e.target.value });
